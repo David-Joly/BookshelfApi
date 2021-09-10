@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 
 namespace BookshelfApi.Models
 {
-    public class OwnedBook
+    public class Book
     {
-        public int OwnedBookId { get; set; }
+        public int BookId { get; set; }
         public string Title { get; set; }
         public string  Author { get; set; }
         public string Genre { get; set; }

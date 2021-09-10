@@ -10,21 +10,21 @@ namespace BookshelfApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class OwnedBooksController : ControllerBase
+    public class BooksController : ControllerBase
     {
         private readonly IBookRepository bookRepository;
 
-        public OwnedBooksController(IBookRepository bookRepository)
+        public BooksController(IBookRepository bookRepository)
         {
             this.bookRepository = bookRepository;
         }
 
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<OwnedBook>>> GetOwnedBooks()
+        [HttpGet("all")]
+        public async Task<ActionResult<IEnumerable<Book>>> GetOwnedBooks()
         {
             try
             {
-                return (await bookRepository.GetOwnedBooks()).ToList();
+                return (await bookRepository.GetAllBooks()).ToList();
             }
             catch (Exception)
             {
@@ -33,7 +33,7 @@ namespace BookshelfApi.Controllers
             }
         }
         [HttpGet("{id:int}")]
-        public async Task<ActionResult<OwnedBook>> GetBook(int id)
+        public async Task<ActionResult<Book>> GetBook(int id)
         {
             try
             {
@@ -47,8 +47,8 @@ namespace BookshelfApi.Controllers
                     "Error retrieving data from database");
             }
         }
-        [HttpPost]
-        public async Task <ActionResult<OwnedBook>> AddBook(OwnedBook ownedBook)
+        [HttpPost("add")]
+        public async Task <ActionResult<Book>> AddBook(Book ownedBook)
         {
             try
             {
@@ -56,7 +56,7 @@ namespace BookshelfApi.Controllers
 
                 var addedBook = await bookRepository.AddBook(ownedBook);
                 return CreatedAtAction(nameof(GetBook),
-                    new { id = addedBook.OwnedBookId }, addedBook);
+                    new { id = addedBook.BookId }, addedBook);
             }
             catch (Exception)
             {
@@ -65,11 +65,11 @@ namespace BookshelfApi.Controllers
             }
         }
         [HttpPut("{id:int}")]
-        public async Task<ActionResult<OwnedBook>> UpdateBook(int id, OwnedBook ownedBook)
+        public async Task<ActionResult<Book>> UpdateBook(int id, Book ownedBook)
         {
             try
             {
-                if (id != ownedBook.OwnedBookId) return BadRequest("Book ID mismatch");
+                if (id != ownedBook.BookId) return BadRequest("Book ID mismatch");
 
                 var bookToUpdate = await bookRepository.GetBook(id);
 
@@ -83,7 +83,7 @@ namespace BookshelfApi.Controllers
             }
         }
         [HttpDelete("{id:int}")]
-        public async Task<ActionResult<OwnedBook>> DeleteBook(int id)
+        public async Task<ActionResult<Book>> DeleteBook(int id)
         {
             try
             {

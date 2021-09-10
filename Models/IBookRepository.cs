@@ -7,10 +7,10 @@ namespace BookshelfApi.Models
 {
     public interface IBookRepository
     {
-        Task<IEnumerable<OwnedBook>> GetOwnedBooks();
-        Task<OwnedBook> GetBook(int ownedBookId);
-        Task<OwnedBook> AddBook(OwnedBook ownedBook);
-        Task<OwnedBook> UpdateBook(OwnedBook ownedBook);
-        Task <OwnedBook> DeleteBook(int ownedBookId);
+        Task<IEnumerable<Book>> GetAllBooks();
+        Task<Book> GetBook(int ownedBookId);
+        Task<Book> AddBook(Book ownedBook);
+        Task<Book> UpdateBook(Book ownedBook);
+        Task <Book> DeleteBook(int ownedBookId);
     }
 }

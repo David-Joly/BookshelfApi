@@ -15,39 +15,39 @@ namespace BookshelfApi.Models
         {
             this.appDbContext = appDbContext;
         }
-        public async Task<OwnedBook> AddBook(OwnedBook ownedBook)
+        public async Task<Book> AddBook(Book ownedBook)
         {
-            var result = await appDbContext.OwnedBooks.AddAsync(ownedBook);
+            var result = await appDbContext.Bookshelf.AddAsync(ownedBook);
             await appDbContext.SaveChangesAsync();
             return result.Entity;
 
         }
 
-        public async Task<OwnedBook> DeleteBook(int ownedBookId)
+        public async Task<Book> DeleteBook(int ownedBookId)
         {
-            var result = await appDbContext.OwnedBooks.FirstOrDefaultAsync(e => e.OwnedBookId == ownedBookId);
+            var result = await appDbContext.Bookshelf.FirstOrDefaultAsync(e => e.BookId == ownedBookId);
             if (result != null)
             {
-                appDbContext.OwnedBooks.Remove(result);
+                appDbContext.Bookshelf.Remove(result);
                 await appDbContext.SaveChangesAsync();
                 return result;
             }
             return null;
         }
 
-        public async Task<OwnedBook> GetBook(int ownedBookId)
+        public async Task<Book> GetBook(int ownedBookId)
         {
-            return await appDbContext.OwnedBooks.FirstOrDefaultAsync(e => e.OwnedBookId == ownedBookId);
+            return await appDbContext.Bookshelf.FirstOrDefaultAsync(e => e.BookId == ownedBookId);
         }
 
-        public async Task<IEnumerable<OwnedBook>> GetOwnedBooks()
+        public async Task<IEnumerable<Book>> GetAllBooks()
         {
-            return await appDbContext.OwnedBooks.ToListAsync();
+            return await appDbContext.Bookshelf.ToListAsync();
         }
 
-        public async Task<OwnedBook> UpdateBook(OwnedBook ownedBook)
+        public async Task<Book> UpdateBook(Book ownedBook)
         {
-            var result = await appDbContext.OwnedBooks.FirstOrDefaultAsync(e => e.OwnedBookId == ownedBook.OwnedBookId);
+            var result = await appDbContext.Bookshelf.FirstOrDefaultAsync(e => e.BookId == ownedBook.BookId);
 
             if (result != null)
             {

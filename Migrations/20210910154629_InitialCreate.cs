@@ -7,10 +7,10 @@ namespace BookshelfApi.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "OwnedBooks",
+                name: "Bookshelf",
                 columns: table => new
                 {
-                    OwnedBookId = table.Column<int>(type: "int", nullable: false)
+                    BookId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Title = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Author = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -20,19 +20,19 @@ namespace BookshelfApi.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_OwnedBooks", x => x.OwnedBookId);
+                    table.PrimaryKey("PK_Bookshelf", x => x.BookId);
                 });
 
             migrationBuilder.InsertData(
-                table: "OwnedBooks",
-                columns: new[] { "OwnedBookId", "Author", "Genre", "Rating", "ReleaseYear", "Title" },
+                table: "Bookshelf",
+                columns: new[] { "BookId", "Author", "Genre", "Rating", "ReleaseYear", "Title" },
                 values: new object[] { 1, "J. R. R. Tolkien", "High Fantasy", "Great!", 1954, "The Lord of the Rings" });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "OwnedBooks");
+                name: "Bookshelf");
         }
     }
 }

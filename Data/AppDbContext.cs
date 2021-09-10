@@ -13,15 +13,15 @@ namespace BookshelfApi.Data
         {
 
         }
-        public DbSet<OwnedBook> OwnedBooks { get; set; }
+        public DbSet<Book> Bookshelf { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<OwnedBook>().HasData(new OwnedBook
+            modelBuilder.Entity<Book>().HasData(new Book
             {
-                OwnedBookId = 1,
+                BookId = 1,
                 Title = "The Lord of the Rings",
                 Author = "J. R. R. Tolkien",
                 Genre = "High Fantasy",

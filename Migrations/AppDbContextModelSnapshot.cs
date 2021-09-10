@@ -18,9 +18,9 @@ namespace BookshelfApi.Migrations
                 .HasAnnotation("ProductVersion", "5.0.9")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("BookshelfApi.Models.OwnedBook", b =>
+            modelBuilder.Entity("BookshelfApi.Models.Book", b =>
                 {
-                    b.Property<int>("OwnedBookId")
+                    b.Property<int>("BookId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -40,14 +40,14 @@ namespace BookshelfApi.Migrations
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("OwnedBookId");
+                    b.HasKey("BookId");
 
-                    b.ToTable("OwnedBooks");
+                    b.ToTable("Bookshelf");
 
                     b.HasData(
                         new
                         {
-                            OwnedBookId = 1,
+                            BookId = 1,
                             Author = "J. R. R. Tolkien",
                             Genre = "High Fantasy",
                             Rating = "Great!",
