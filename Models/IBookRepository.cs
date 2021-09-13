@@ -7,6 +7,7 @@ namespace BookshelfApi.Models
 {
     public interface IBookRepository
     {
+        Task<IEnumerable<Book>> Search(string title);
         Task<IEnumerable<Book>> GetAllBooks();
         Task<Book> GetBook(int ownedBookId);
         Task<Book> AddBook(Book ownedBook);

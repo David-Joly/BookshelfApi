@@ -47,7 +47,7 @@ namespace BookshelfApi.Controllers
                     "Error retrieving data from database");
             }
         }
-        [HttpPost("add")]
+        [HttpPost]
         public async Task <ActionResult<Book>> AddBook(Book ownedBook)
         {
             try
@@ -67,22 +67,28 @@ namespace BookshelfApi.Controllers
         [HttpPut("{id:int}")]
         public async Task<ActionResult<Book>> UpdateBook(int id, Book ownedBook)
         {
-            try
+          try
             {
-                if (id != ownedBook.BookId) return BadRequest("Book ID mismatch");
+                if (id != ownedBook.BookId)
+                {
+                    return BadRequest("Id Mismatch");
+                }
+                var bookUpdate = await bookRepository.GetBook(id);
 
-                var bookToUpdate = await bookRepository.GetBook(id);
-
-                if (bookToUpdate == null) return NotFound($"Book with Id = {id} not found");
-                return await bookRepository.UpdateBook(ownedBook);
+                if (bookUpdate == null)
+                {
+                    return NotFound($"Bood Id= {id} not found");
+                }
+               return await bookRepository.UpdateBook(ownedBook);
             }
             catch (Exception)
             {
                 return StatusCode(StatusCodes.Status500InternalServerError,
-                    "Error updating book");
+                    "Error retrieving from database");
+
             }
         }
-        [HttpDelete("{id:int}")]
+        [HttpDelete("{id=int}")]
         public async Task<ActionResult<Book>> DeleteBook(int id)
         {
             try
@@ -102,5 +108,23 @@ namespace BookshelfApi.Controllers
             }
         }
 
+        [HttpGet("/search")]
+        public async Task <ActionResult<IEnumerable<Book>>> Search (string title)
+        {
+            try
+            {
+                var result = await bookRepository.Search(title);
+                if (result.Any())
+                {
+                    return Ok(result);
+                }
+                return NotFound();
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError,
+                    "Error retrieving book from database");
+            }
+        }
     }
 }

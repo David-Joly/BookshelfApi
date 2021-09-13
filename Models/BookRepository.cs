@@ -56,11 +56,22 @@ namespace BookshelfApi.Models
                 result.Genre = ownedBook.Genre;
                 result.ReleaseYear = ownedBook.ReleaseYear;
                 result.Rating = ownedBook.Rating;
-
+                
                 await appDbContext.SaveChangesAsync();
                 return result;
             }
             return null;
+        }
+
+        public async Task<IEnumerable<Book>> Search(string title)
+        {
+            IQueryable<Book> query = appDbContext.Bookshelf;
+
+            if (!string.IsNullOrEmpty(title))
+            {
+                query = query.Where(a => a.Title.Contains(title));
+            }
+            return await query.ToListAsync();
         }
     }
 }

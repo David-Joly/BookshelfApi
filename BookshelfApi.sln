@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31624.102
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookshelfApi", "BookshelfApi.csproj", "{0BDBBF11-1DD2-4999-B3EC-6849F56101DD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookshelfApi", "BookshelfApi.csproj", "{0BDBBF11-1DD2-4999-B3EC-6849F56101DD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bookshelf", "..\Bookshelf\Bookshelf.csproj", "{A565859A-32A2-4C72-B747-7B1D9A140EC7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{0BDBBF11-1DD2-4999-B3EC-6849F56101DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0BDBBF11-1DD2-4999-B3EC-6849F56101DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0BDBBF11-1DD2-4999-B3EC-6849F56101DD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A565859A-32A2-4C72-B747-7B1D9A140EC7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A565859A-32A2-4C72-B747-7B1D9A140EC7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A565859A-32A2-4C72-B747-7B1D9A140EC7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A565859A-32A2-4C72-B747-7B1D9A140EC7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
